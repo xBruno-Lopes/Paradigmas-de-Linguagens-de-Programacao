@@ -27,12 +27,12 @@ fun main() {
 
     // <INCLUA O TRECHO ABAIXO PARA TESTAR SUA SOLUÇÃO>
 
-//    assertEquals("somaIntervaloRepeticao(1, 10)", 55, somaIntervaloRepeticao(1, 10))
-//    assertEquals("somaIntervaloRepeticao(10, 20)", 165, somaIntervaloRepeticao(10, 20))
-//    assertEquals("somaIntervaloRepeticao(1, 100)", 5050, somaIntervaloRepeticao(1, 100))
-//    assertEquals("somaIntervaloRepeticao(10, 5)", 0, somaIntervaloRepeticao(10, 5))
-//    assertEquals("somaIntervaloRepeticao(10, 10)", 10, somaIntervaloRepeticao(10, 10))
-//    println("Todos os testes passaram para a função somaIntervaloRepeticao!")
+   assertEquals("somaIntervaloRepeticao(1, 10)", 55, somaIntervaloRepeticao(1, 10))
+   assertEquals("somaIntervaloRepeticao(10, 20)", 165, somaIntervaloRepeticao(10, 20))
+   assertEquals("somaIntervaloRepeticao(1, 100)", 5050, somaIntervaloRepeticao(1, 100))
+   assertEquals("somaIntervaloRepeticao(10, 5)", 0, somaIntervaloRepeticao(10, 5))
+   assertEquals("somaIntervaloRepeticao(10, 10)", 10, somaIntervaloRepeticao(10, 10))
+   println("Todos os testes passaram para a função somaIntervaloRepeticao!")
 
 
     /**
@@ -57,12 +57,12 @@ fun main() {
 
     // <INCLUA O TRECHO ABAIXO PARA TESTAR SUA SOLUÇÃO>
 
-//    assertEquals("somaParesIntervaloRepeticao(1, 10)", 30, somaParesIntervaloRepeticao(1, 10))
-//    assertEquals("somaParesIntervaloRepeticao(10, 20)", 90, somaParesIntervaloRepeticao(10, 20))
-//    assertEquals("somaParesIntervaloRepeticao(1, 100)", 2550, somaParesIntervaloRepeticao(1, 100))
-//    assertEquals("somaParesIntervaloRepeticao(10, 5)", 0, somaParesIntervaloRepeticao(10, 5))
-//    assertEquals("somaParesIntervaloRepeticao(10, 10)", 10, somaParesIntervaloRepeticao(10, 10))
-//    println("Todos os testes passaram para a função somaParesIntervaloRepeticao!")
+   assertEquals("somaParesIntervaloRepeticao(1, 10)", 30, somaParesIntervaloRepeticao(1, 10))
+   assertEquals("somaParesIntervaloRepeticao(10, 20)", 90, somaParesIntervaloRepeticao(10, 20))
+   assertEquals("somaParesIntervaloRepeticao(1, 100)", 2550, somaParesIntervaloRepeticao(1, 100))
+   assertEquals("somaParesIntervaloRepeticao(10, 5)", 0, somaParesIntervaloRepeticao(10, 5))
+   assertEquals("somaParesIntervaloRepeticao(10, 10)", 10, somaParesIntervaloRepeticao(10, 10))
+   println("Todos os testes passaram para a função somaParesIntervaloRepeticao!")
 
 
     /*
@@ -84,15 +84,15 @@ fun main() {
 
     // <INCLUA O TRECHO ABAIXO PARA TESTAR SUA SOLUÇÃO>
 
-//    assertEquals("blackjack(21, 3)", 21, blackjack(21, 3))
-//    assertEquals("blackjack(22, 0)", 22, blackjack(22, 0))
-//    assertEquals("blackjack(22, 1)", 12, blackjack(22, 1))
-//    assertEquals("blackjack(22, 2)", 12, blackjack(22, 2))
-//    assertEquals("blackjack(32, 2)", 12, blackjack(32, 2))
-//    assertEquals("blackjack(43, 1)", 33, blackjack(43, 1))
-//    assertEquals("blackjack(43, 4)", 13, blackjack(43, 4))
-//    assertEquals("blackjack(41, 4)", 21, blackjack(41, 4))
-//    println("Todos os testes passaram para a função blackjack!")
+   assertEquals("blackjack(21, 3)", 21, blackjack(21, 3))
+   assertEquals("blackjack(22, 0)", 22, blackjack(22, 0))
+   assertEquals("blackjack(22, 1)", 12, blackjack(22, 1))
+   assertEquals("blackjack(22, 2)", 12, blackjack(22, 2))
+   assertEquals("blackjack(32, 2)", 12, blackjack(32, 2))
+   assertEquals("blackjack(43, 1)", 33, blackjack(43, 1))
+   assertEquals("blackjack(43, 4)", 13, blackjack(43, 4))
+   assertEquals("blackjack(41, 4)", 21, blackjack(41, 4))
+   println("Todos os testes passaram para a função blackjack!")
 
 
     /*
