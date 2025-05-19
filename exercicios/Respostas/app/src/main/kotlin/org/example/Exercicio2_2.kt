@@ -1,7 +1,6 @@
-package exercicio2_2
 import kotlin.math.sqrt
 
-fun ex2_2() {
+fun main() {
 
     // Função auxiliar para verificar os resultados dos testes (não modifique)
     fun assertEquals(funcao: String, esperado: Any, resultado: Any) {

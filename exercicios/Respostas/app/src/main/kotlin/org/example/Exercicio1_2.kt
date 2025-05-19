@@ -1,9 +1,14 @@
-package exercicio1_2
-
 import kotlin.math.pow
 import kotlin.math.sqrt
 
-fun ex1_2() {
+fun main() {
+
+    // Função auxiliar para verificar os resultados dos testes (não modifique)
+    fun assertEquals(funcao: String, esperado: Any, resultado: Any) {
+        if (esperado != resultado) {
+            throw AssertionError("Falha em $funcao: Esperado $esperado, Obtido $resultado")
+        }
+    }
 
     /**
      * Forneça a função `distancia`, que recebe dois pontos no plano `(x1,y1)` e `(x2,y2)` (ou seja, recebe dois Pairs com dois elementos cada), e retorna a distância entre estes pontos, dada pela fórmula sqrt((x1?x2)^2+(y1?y2)^2).
@@ -19,12 +24,12 @@ fun ex1_2() {
 
     // <INCLUA O TRECHO ABAIXO PARA TESTAR SUA SOLUÇÃO>
 
-//    assertEquals("distancia((3,7), (1,4))", 3.605551275463989, distancia(Pair(3.0, 7.0), Pair(1.0, 4.0)))
-//    assertEquals("distancia((7,3), (4,-1))", 5.0, distancia(Pair(7.0, 3.0), Pair(4.0, -1.0)))
-//    assertEquals("distancia((1,8), (-4,12))", 6.4031242374328485, distancia(Pair(1.0, 8.0), Pair(-4.0, 12.0)))
-//    assertEquals("distancia((0,0), (0,0))", 0.0, distancia(Pair(0.0, 0.0), Pair(0.0, 0.0)))
-//    assertEquals("distancia((47.88,43.91), (34.8,40.02))", 13.646189944449699, distancia(Pair(47.88, 43.91), Pair(34.8, 40.02)))
-//    println("Todos os testes passaram para a função distancia!")
+   assertEquals("distancia((3,7), (1,4))", 3.605551275463989, distancia(Pair(3.0, 7.0), Pair(1.0, 4.0)))
+   assertEquals("distancia((7,3), (4,-1))", 5.0, distancia(Pair(7.0, 3.0), Pair(4.0, -1.0)))
+   assertEquals("distancia((1,8), (-4,12))", 6.4031242374328485, distancia(Pair(1.0, 8.0), Pair(-4.0, 12.0)))
+   assertEquals("distancia((0,0), (0,0))", 0.0, distancia(Pair(0.0, 0.0), Pair(0.0, 0.0)))
+   assertEquals("distancia((47.88,43.91), (34.8,40.02))", 13.646189944449699, distancia(Pair(47.88, 43.91), Pair(34.8, 40.02)))
+   println("Todos os testes passaram para a função distancia!")
 
 
     /**
@@ -54,18 +59,24 @@ fun ex1_2() {
      * (na mesma ordem em que foram declaradas).
      */
     fun trocarValores(a: Int, b: Int): Pair<Int, Int> {
-        // <FORNEÇA AQUI SUA SOLUÇÃO>
-        return Pair(0, 0)
+        var valor1 = a
+        var valor2 = b
+        var aux: Int
+
+        aux = valor1
+        valor1 = valor2
+        valor2 = aux
+        return Pair(valor1, valor2)
     }
 
     // <INCLUA O TRECHO ABAIXO PARA TESTAR SUA SOLUÇÃO>
-    /*
+    
     assertEquals("trocarValores(2, 3)", Pair(3, 2), trocarValores(2, 3))
     assertEquals("trocarValores(1, 2)", Pair(2, 1), trocarValores(1, 2))
     assertEquals("trocarValores(1, 1)", Pair(1, 1), trocarValores(1, 1))
     assertEquals("trocarValores(0, 0)", Pair(0, 0), trocarValores(0, 0))
     println("Todos os testes passaram para a função trocarValores!")
-    */
+    
 
     /**
      * Dados dois inteiros 'a' e 'b' recebidos como entrada,
@@ -73,17 +84,19 @@ fun ex1_2() {
      * e o resultado da divisão fracionária de 'a' por 'b'.
      */
     fun calcularDivisao(a: Int, b: Int): Triple<Int, Int, Double> {
-        // <FORNEÇA AQUI SUA SOLUÇÃO>
-        return Triple(0, 0, 0.0)
+        val divisao = a / b
+        val resto = a % b
+        val frac: Double = (a * 1.0) / (b * 1.0)
+        return Triple(divisao, resto, frac)
     }
 
     // <INCLUA O TRECHO ABAIXO PARA TESTAR SUA SOLUÇÃO>
-    /*
+    
     assertEquals("calcularDivisao(7, 3)", Triple(2, 1, 7.0 / 3.0), calcularDivisao(7, 3))
     assertEquals("calcularDivisao(10, 2)", Triple(5, 0, 5.0), calcularDivisao(10, 2))
     assertEquals("calcularDivisao(5, 3)", Triple(1, 2, 5.0 / 3.0), calcularDivisao(5, 3))
     println("Todos os testes passaram para a função calcularDivisao!")
-    */
+    
 
     /**
      * Escreva uma função para auxiliar vendedores. A partir de um valor total recebido, retornar:
@@ -93,23 +106,19 @@ fun ex1_2() {
      * - a comissão do vendedor, no caso da venda ser parcelada (5% sobre o valor total)
      */
     fun calcularValores(valorTotal: Double): Triple<Double, Double, Pair<Double, Double>> {
-        // <FORNEÇA AQUI SUA SOLUÇÃO>
-        return Triple(0.0, 0.0, Pair(0.0, 0.0))
+        val totoalPagar = valorTotal * 0.9
+        val valorParcela = valorTotal / 3
+        val comissaoVendedorAVista = totoalPagar * 0.05
+        val comissaoVendedorAPrazo = valorTotal * 0.05
+        return Triple(totoalPagar, valorParcela, Pair(comissaoVendedorAVista, comissaoVendedorAPrazo))
     }
 
     // <INCLUA O TRECHO ABAIXO PARA TESTAR SUA SOLUÇÃO>
-    /*
+    
     assertEquals("calcularValores(100.0)", Triple(90.0, 100.0 / 3.0, Pair(4.5, 5.0)), calcularValores(100.0))
     assertEquals("calcularValores(200.0)", Triple(180.0, 200.0 / 3.0, Pair(9.0, 10.0)), calcularValores(200.0))
     assertEquals("calcularValores(300.0)", Triple(270.0, 100.0, Pair(13.5, 15.0)), calcularValores(300.0))
     println("Todos os testes passaram para a função calcularValores!")
-    */
+    
 
-}
-
-// Função auxiliar para verificar os resultados dos testes (não modifique)
-fun assertEquals(funcao: String, esperado: Any, resultado: Any) {
-    if (esperado != resultado) {
-        throw AssertionError("Falha em $funcao: Esperado $esperado, Obtido $resultado")
-    }
 }

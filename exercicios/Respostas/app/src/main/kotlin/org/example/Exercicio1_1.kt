@@ -1,7 +1,11 @@
-package exercicio1_1
+fun main() {
 
-fun ex1() {
-
+    // Função auxiliar para verificar os resultados dos testes (não modifique)
+    fun assertEquals(funcao: String, esperado: Any, resultado: Any) {
+        if (esperado != resultado) {
+            throw AssertionError("Falha em $funcao: Esperado $esperado, Obtido $resultado")
+        }
+    }
     /**
      * Forneça a função `celsiusToFahrenheit` que recebe uma temperatura em graus Celsius e retorna esta temperatura convertida em graus Fahrenheit.
      * Fórmula de conversão: F = (9/5)?C+32, onde C é a temperatura em Celsius, e F é a temperatura em Fahrenheit.
@@ -14,10 +18,10 @@ fun ex1() {
 
     // <INCLUA O TRECHO ABAIXO PARA TESTAR SUA SOLUÇÃO>
 
-//    assertEquals("celsiusToFahrenheit(10.0)", 50.0, celsiusToFahrenheit(10.0))
-//    assertEquals("celsiusToFahrenheit(0.0)", 32.0, celsiusToFahrenheit(0.0))
-//    assertEquals("celsiusToFahrenheit(5.5)", 41.9, celsiusToFahrenheit(5.5))
-//    println("Todos os testes passaram para a função celsiusToFahrenheit!")
+   assertEquals("celsiusToFahrenheit(10.0)", 50.0, celsiusToFahrenheit(10.0))
+   assertEquals("celsiusToFahrenheit(0.0)", 32.0, celsiusToFahrenheit(0.0))
+   assertEquals("celsiusToFahrenheit(5.5)", 41.9, celsiusToFahrenheit(5.5))
+   println("Todos os testes passaram para a função celsiusToFahrenheit!")
 
 
     /**
@@ -31,10 +35,10 @@ fun ex1() {
 
     // <INCLUA O TRECHO ABAIXO PARA TESTAR SUA SOLUÇÃO>
 
-//    assertEquals("mediaPonderada(8.5, 6, 7)", 7.45, mediaPonderada(8.5, 6.0, 7.0))
-//    assertEquals("mediaPonderada(5.0, 5.0, 5.0)", 5.0, mediaPonderada(5.0, 5.0, 5.0))
-//    assertEquals("mediaPonderada(1.0, 2.0, 3.0)", 1.7, mediaPonderada(1.0, 2.0, 3.0))
-//    println("Todos os testes passaram para a função mediaPonderada!")
+   assertEquals("mediaPonderada(8.5, 6, 7)", 7.45, mediaPonderada(8.5, 6.0, 7.0))
+   assertEquals("mediaPonderada(5.0, 5.0, 5.0)", 5.0, mediaPonderada(5.0, 5.0, 5.0))
+   assertEquals("mediaPonderada(1.0, 2.0, 3.0)", 1.7, mediaPonderada(1.0, 2.0, 3.0))
+   println("Todos os testes passaram para a função mediaPonderada!")
 
 
     /**
@@ -56,10 +60,10 @@ fun ex1() {
 
     // <INCLUA O TRECHO ABAIXO PARA TESTAR SUA SOLUÇÃO>
 
-//    assertEquals("conversaoTempo(7384)", Triple(2, 3, 4), conversaoTempo(7384))
-//    assertEquals("conversaoTempo(60)", Triple(0, 1, 0), conversaoTempo(60))
-//    assertEquals("conversaoTempo(3601)", Triple(1, 0, 1), conversaoTempo(3601))
-//    println("Todos os testes passaram para a função conversaoTempo!")
+   assertEquals("conversaoTempo(7384)", Triple(2, 3, 4), conversaoTempo(7384))
+   assertEquals("conversaoTempo(60)", Triple(0, 1, 0), conversaoTempo(60))
+   assertEquals("conversaoTempo(3601)", Triple(1, 0, 1), conversaoTempo(3601))
+   println("Todos os testes passaram para a função conversaoTempo!")
 
 
     /**
@@ -78,10 +82,10 @@ fun ex1() {
 
     // <INCLUA O TRECHO ABAIXO PARA TESTAR SUA SOLUÇÃO>
 
-//    assertEquals("premioLoteria(10.0, 20.0, 30.0, 1200.0)", Triple(200.0, 400.0, 600.0), premioLoteria(10.0, 20.0, 30.0, 1200.0))
-//    assertEquals("premioLoteria(1.5, 1.5, 1.5, 31.5)", Triple(10.5, 10.5, 10.5), premioLoteria(1.5, 1.5, 1.5, 31.5))
-//    assertEquals("premioLoteria(1.0, 2.0, 3.0, 120.0)", Triple(20.0, 40.0, 60.0), premioLoteria(1.0, 2.0, 3.0, 120.0))
-//    println("Todos os testes passaram para a função premioLoteria!")
+   assertEquals("premioLoteria(10.0, 20.0, 30.0, 1200.0)", Triple(200.0, 400.0, 600.0), premioLoteria(10.0, 20.0, 30.0, 1200.0))
+   assertEquals("premioLoteria(1.5, 1.5, 1.5, 31.5)", Triple(10.5, 10.5, 10.5), premioLoteria(1.5, 1.5, 1.5, 31.5))
+   assertEquals("premioLoteria(1.0, 2.0, 3.0, 120.0)", Triple(20.0, 40.0, 60.0), premioLoteria(1.0, 2.0, 3.0, 120.0))
+   println("Todos os testes passaram para a função premioLoteria!")
 
 
     /**
@@ -96,16 +100,9 @@ fun ex1() {
 
     // <INCLUA O TRECHO ABAIXO PARA TESTAR SUA SOLUÇÃO>
 
-//    assertEquals("calcularIMC(70.0, 1.75)", 22.857142857142858, calcularIMC(70.0, 1.75))
-//    assertEquals("calcularIMC(60.0, 1.60)", 23.437499999999996, calcularIMC(60.0, 1.60))
-//    assertEquals("calcularIMC(80.0, 1.80)", 24.691358024691358, calcularIMC(80.0, 1.80))
-//    println("Todos os testes passaram para a função calcularIMC!")
+   assertEquals("calcularIMC(70.0, 1.75)", 22.857142857142858, calcularIMC(70.0, 1.75))
+   assertEquals("calcularIMC(60.0, 1.60)", 23.437499999999996, calcularIMC(60.0, 1.60))
+   assertEquals("calcularIMC(80.0, 1.80)", 24.691358024691358, calcularIMC(80.0, 1.80))
+   println("Todos os testes passaram para a função calcularIMC!")
 
-}
-
-// Função auxiliar para verificar os resultados dos testes (não modifique)
-fun assertEquals(funcao: String, esperado: Any, resultado: Any) {
-    if (esperado != resultado) {
-        throw AssertionError("Falha em $funcao: Esperado $esperado, Obtido $resultado")
-    }
 }

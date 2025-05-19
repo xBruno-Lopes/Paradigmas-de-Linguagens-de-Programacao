@@ -1,5 +1,3 @@
-package exercicio4_3
-
 fun main() {
 
     // Função auxiliar para verificar os resultados dos testes (não modifique)

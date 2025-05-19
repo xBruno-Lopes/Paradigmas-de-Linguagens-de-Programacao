@@ -1,7 +1,4 @@
-package exercicio4_1
-
-
-fun ex4_1() {
+fun main() {
 
     // Função auxiliar para verificar os resultados dos testes (não modifique)
     fun assertEquals(funcao: String, esperado: Any, resultado: Any) {
