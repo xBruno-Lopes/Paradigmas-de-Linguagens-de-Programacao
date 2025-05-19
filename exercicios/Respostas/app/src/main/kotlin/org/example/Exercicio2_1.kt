@@ -252,8 +252,8 @@ fun main() {
         val r1 = (-b - sqrt(delta)) / (2 * a)
         val r2 = (-b + sqrt(delta)) / (2 * a)
 
-        var menor = 0.0
-        var maior = 0.0
+        var menor: Double
+        var maior: Double
 
         if (r1 < r2){
             menor = r1
