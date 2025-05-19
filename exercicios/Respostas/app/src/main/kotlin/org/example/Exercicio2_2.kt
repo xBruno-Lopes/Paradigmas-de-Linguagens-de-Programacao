@@ -41,12 +41,12 @@ fun main() {
 
     // <INCLUA O TRECHO ABAIXO PARA TESTAR SUA SOLUÇÃO>
 
-//    assertEquals("mercantilV1(10.0, 9.0, 11.0)", "empate", mercantilV1(10.0, 9.0, 11.0))
-//    assertEquals("mercantilV1(10.0, 9.0, 12.0)", "primeiro", mercantilV1(10.0, 9.0, 12.0))
-//    assertEquals("mercantilV1(10.0, 9.0, 8.0)", "primeiro", mercantilV1(10.0, 9.0, 8.0))
-//    assertEquals("mercantilV1(10.0, 9.0, 10.0)", "segundo", mercantilV1(10.0, 9.0, 10.0))
-//    assertEquals("mercantilV1(10.0, 12.0, 9.0)", "segundo", mercantilV1(10.0, 12.0, 9.0))
-//    println("Todos os testes passaram para a função mercantilV1!")
+   assertEquals("mercantilV1(10.0, 9.0, 11.0)", "empate", mercantilV1(10.0, 9.0, 11.0))
+   assertEquals("mercantilV1(10.0, 9.0, 12.0)", "primeiro", mercantilV1(10.0, 9.0, 12.0))
+   assertEquals("mercantilV1(10.0, 9.0, 8.0)", "primeiro", mercantilV1(10.0, 9.0, 8.0))
+   assertEquals("mercantilV1(10.0, 9.0, 10.0)", "segundo", mercantilV1(10.0, 9.0, 10.0))
+   assertEquals("mercantilV1(10.0, 12.0, 9.0)", "segundo", mercantilV1(10.0, 12.0, 9.0))
+   println("Todos os testes passaram para a função mercantilV1!")
 
 
     /**
@@ -79,12 +79,12 @@ fun main() {
 
     // <INCLUA O TRECHO ABAIXO PARA TESTAR SUA SOLUÇÃO>
     
-//    assertEquals("mercantilV2(10.0, 9.0, 'm')", "primeiro", mercantilV2(10.0, 9.0, 'm'))
-//    assertEquals("mercantilV2(10.0, 11.0, 'm')", "segundo", mercantilV2(10.0, 11.0, 'm'))
-//    assertEquals("mercantilV2(10.0, 11.0, 'M')", "primeiro", mercantilV2(10.0, 11.0, 'M'))
-//    assertEquals("mercantilV2(10.0, 10.0, 'm')", "primeiro", mercantilV2(10.0, 10.0, 'm'))
-//    assertEquals("mercantilV2(10.0, 10.0, 'M')", "primeiro", mercantilV2(10.0, 10.0, 'M'))
-//    println("Todos os testes passaram para a função mercantilV2!")
+   assertEquals("mercantilV2(10.0, 9.0, 'm')", "primeiro", mercantilV2(10.0, 9.0, 'm'))
+   assertEquals("mercantilV2(10.0, 11.0, 'm')", "segundo", mercantilV2(10.0, 11.0, 'm'))
+   assertEquals("mercantilV2(10.0, 11.0, 'M')", "primeiro", mercantilV2(10.0, 11.0, 'M'))
+   assertEquals("mercantilV2(10.0, 10.0, 'm')", "primeiro", mercantilV2(10.0, 10.0, 'm'))
+   assertEquals("mercantilV2(10.0, 10.0, 'M')", "primeiro", mercantilV2(10.0, 10.0, 'M'))
+   println("Todos os testes passaram para a função mercantilV2!")
 
 
     /**
@@ -132,11 +132,11 @@ fun main() {
 
     // <INCLUA O TRECHO ABAIXO PARA TESTAR SUA SOLUÇÃO>
 
-//    assertEquals("quizHarryPotter('d', 'b', 'c', 'c')", 2, quizHarryPotter('d', 'b', 'c', 'c'))
-//    assertEquals("quizHarryPotter('d', 'a', 'c', 'd')", 4, quizHarryPotter('d', 'a', 'c', 'd'))
-//    assertEquals("quizHarryPotter('a', 'a', 'a', 'a')", 1, quizHarryPotter('a', 'a', 'a', 'a'))
-//    assertEquals("quizHarryPotter('b', 'b', 'b', 'b')", 0, quizHarryPotter('b', 'b', 'b', 'b'))
-//    println("Todos os testes passaram para a função quizHarryPotter!")
+   assertEquals("quizHarryPotter('d', 'b', 'c', 'c')", 2, quizHarryPotter('d', 'b', 'c', 'c'))
+   assertEquals("quizHarryPotter('d', 'a', 'c', 'd')", 4, quizHarryPotter('d', 'a', 'c', 'd'))
+   assertEquals("quizHarryPotter('a', 'a', 'a', 'a')", 1, quizHarryPotter('a', 'a', 'a', 'a'))
+   assertEquals("quizHarryPotter('b', 'b', 'b', 'b')", 0, quizHarryPotter('b', 'b', 'b', 'b'))
+   println("Todos os testes passaram para a função quizHarryPotter!")
 
 
     /**
@@ -167,14 +167,14 @@ fun main() {
 
     // <INCLUA O TRECHO ABAIXO PARA TESTAR SUA SOLUÇÃO>
 
-//    assertEquals("jokenpo('R', 'R')", "empate", jokenpo('R', 'R'))
-//    assertEquals("jokenpo('R', 'P')", "jog2", jokenpo('R', 'P'))
-//    assertEquals("jokenpo('R', 'S')", "jog1", jokenpo('R', 'S'))
-//    assertEquals("jokenpo('P', 'R')", "jog1", jokenpo('P', 'R'))
-//    assertEquals("jokenpo('P', 'S')", "jog2", jokenpo('P', 'S'))
-//    assertEquals("jokenpo('S', 'R')", "jog2", jokenpo('S', 'R'))
-//    assertEquals("jokenpo('S', 'P')", "jog1", jokenpo('S', 'P'))
-//    println("Todos os testes passaram para a função jokenpo!")
+   assertEquals("jokenpo('R', 'R')", "empate", jokenpo('R', 'R'))
+   assertEquals("jokenpo('R', 'P')", "jog2", jokenpo('R', 'P'))
+   assertEquals("jokenpo('R', 'S')", "jog1", jokenpo('R', 'S'))
+   assertEquals("jokenpo('P', 'R')", "jog1", jokenpo('P', 'R'))
+   assertEquals("jokenpo('P', 'S')", "jog2", jokenpo('P', 'S'))
+   assertEquals("jokenpo('S', 'R')", "jog2", jokenpo('S', 'R'))
+   assertEquals("jokenpo('S', 'P')", "jog1", jokenpo('S', 'P'))
+   println("Todos os testes passaram para a função jokenpo!")
 
 
     /**
@@ -202,11 +202,11 @@ fun main() {
 
     // <INCLUA O TRECHO ABAIXO PARA TESTAR SUA SOLUÇÃO>
 
-//    assertEquals("zerimOuUm(0, 0, 0)", "empate", zerimOuUm(0, 0, 0))
-//    assertEquals("zerimOuUm(0, 1, 1)", "primeiro", zerimOuUm(0, 1, 1))
-//    assertEquals("zerimOuUm(0, 0, 1)", "terceiro", zerimOuUm(0, 0, 1))
-//    assertEquals("zerimOuUm(1, 0, 1)", "segundo", zerimOuUm(1, 0, 1))
-//    println("Todos os testes passaram para a função zerimOuUm!")
+   assertEquals("zerimOuUm(0, 0, 0)", "empate", zerimOuUm(0, 0, 0))
+   assertEquals("zerimOuUm(0, 1, 1)", "primeiro", zerimOuUm(0, 1, 1))
+   assertEquals("zerimOuUm(0, 0, 1)", "terceiro", zerimOuUm(0, 0, 1))
+   assertEquals("zerimOuUm(1, 0, 1)", "segundo", zerimOuUm(1, 0, 1))
+   println("Todos os testes passaram para a função zerimOuUm!")
 
 
     /**
@@ -251,14 +251,14 @@ fun main() {
 
     // <INCLUA O TRECHO ABAIXO PARA TESTAR SUA SOLUÇÃO j1 - 1 e 5, j2 - 2 e 6, j2 - 3 e 7, j4 - 4 e 8>
 
-//    assertEquals("zerimOuUmAmericano(0, 0, 0, 0)", "nenhum", zerimOuUmAmericano(0, 0, 0, 0))
-//    assertEquals("zerimOuUmAmericano(1, 0, 0, 0)", "jog1", zerimOuUmAmericano(1, 0, 0, 0))
-//    assertEquals("zerimOuUmAmericano(0, 3, 0, 0)", "jog3", zerimOuUmAmericano(0, 3, 0, 0))
-//    assertEquals("zerimOuUmAmericano(2, 2, 2, 2)", "jog4", zerimOuUmAmericano(2, 2, 2, 2))
-//    assertEquals("zerimOuUmAmericano(1, 1, 1, 1)", "jog4", zerimOuUmAmericano(1, 1, 1, 1))
-//    assertEquals("zerimOuUmAmericano(2, 1, 1, 1)", "jog1", zerimOuUmAmericano(2, 1, 1, 1))
-//    assertEquals("zerimOuUmAmericano(2, 10, 1, 1)", "jog2", zerimOuUmAmericano(2, 10, 1, 1))
-//    println("Todos os testes passaram para a função zerimOuUmAmericano!")
+   assertEquals("zerimOuUmAmericano(0, 0, 0, 0)", "nenhum", zerimOuUmAmericano(0, 0, 0, 0))
+   assertEquals("zerimOuUmAmericano(1, 0, 0, 0)", "jog1", zerimOuUmAmericano(1, 0, 0, 0))
+   assertEquals("zerimOuUmAmericano(0, 3, 0, 0)", "jog3", zerimOuUmAmericano(0, 3, 0, 0))
+   assertEquals("zerimOuUmAmericano(2, 2, 2, 2)", "jog4", zerimOuUmAmericano(2, 2, 2, 2))
+   assertEquals("zerimOuUmAmericano(1, 1, 1, 1)", "jog4", zerimOuUmAmericano(1, 1, 1, 1))
+   assertEquals("zerimOuUmAmericano(2, 1, 1, 1)", "jog1", zerimOuUmAmericano(2, 1, 1, 1))
+   assertEquals("zerimOuUmAmericano(2, 10, 1, 1)", "jog2", zerimOuUmAmericano(2, 10, 1, 1))
+   println("Todos os testes passaram para a função zerimOuUmAmericano!")
 
 
     /**
@@ -270,17 +270,20 @@ fun main() {
      * Obs.: Não ordene os lados da caixa (apenas faça as comparações necessárias).
      */
     fun droneDeEntrega(lado1: Int, lado2: Int, lado3: Int, largura: Int, altura: Int): Boolean {
-        return (((lado1 <= altura) || (lado1 <= largura)) && ((lado2 <= altura) || ((lado2 <= largura)) || (lado3 <= altura) || (lado3 <= largura)))
+        if ((((lado1 <= altura) || (lado1 <= largura)) && ((lado2 <= altura) || ((lado2 <= largura)) || (lado3 <= altura) || (lado3 <= largura)))){
+            return true
+        }
+        return false
     }
 
     // <INCLUA O TRECHO ABAIXO PARA TESTAR SUA SOLUÇÃO>
 
-//    assertEquals("droneDeEntrega(10, 20, 30, 25, 15)", true, droneDeEntrega(10, 20, 30, 25, 15))
-//    assertEquals("droneDeEntrega(10, 20, 30, 15, 10)", false, droneDeEntrega(10, 20, 30, 15, 10))
-//    assertEquals("droneDeEntrega(10, 20, 30, 30, 20)", true, droneDeEntrega(10, 20, 30, 30, 20))
-//    assertEquals("droneDeEntrega(10, 20, 30, 20, 10)", true, droneDeEntrega(10, 20, 30, 20, 10))
-//    assertEquals("droneDeEntrega(10, 20, 30, 10, 5)", false, droneDeEntrega(10, 20, 30, 10, 5))
-//    println("Todos os testes passaram para a função droneDeEntrega!")
+   assertEquals("droneDeEntrega(10, 20, 30, 25, 15)", true, droneDeEntrega(10, 20, 30, 25, 15))
+   assertEquals("droneDeEntrega(10, 20, 30, 15, 10)", false, droneDeEntrega(10, 20, 30, 15, 10))
+   assertEquals("droneDeEntrega(10, 20, 30, 30, 20)", true, droneDeEntrega(10, 20, 30, 30, 20))
+   assertEquals("droneDeEntrega(10, 20, 30, 20, 10)", true, droneDeEntrega(10, 20, 30, 20, 10))
+   assertEquals("droneDeEntrega(10, 20, 30, 10, 5)", false, droneDeEntrega(10, 20, 30, 10, 5))
+   println("Todos os testes passaram para a função droneDeEntrega!")
 
 
     /**
@@ -321,23 +324,23 @@ fun main() {
      */
     fun formiga(hora: Int, minuto: Int, sentido: Char, distancia: Int): Pair<Int, Int> {
         val cm = (hora * 6) + (minuto / 10)
-        var hora: Int
+        var horaAux: Int
 
         if (sentido == 'H') {
-            hora = cm + distancia
+            horaAux = cm + distancia
         } else {
-            hora = cm - distancia
+            horaAux = cm - distancia
         }
-        hora %= 72
+        horaAux %= 72
 
-        if (hora < 0) {
-            hora += 72
+        if (horaAux < 0) {
+            horaAux += 72
         }
 
-        val min = (hora % 6) * 10
-        hora /= 6
+        val min = (horaAux % 6) * 10
+        horaAux /= 6
 
-        return Pair(hora, min)
+        return Pair(horaAux, min)
     }
 
     // <INCLUA O TRECHO ABAIXO PARA TESTAR SUA SOLUÇÃO>
