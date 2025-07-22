@@ -13,6 +13,13 @@ Exemplos:
 
 % <FORNEÇA AQUI SUA SOLUÇÃO>
 
+% Caso base: lista vazia duplica para lista vazia
+twice([], []).
+
+% Passo recursivo: duplicar cabeça e continuar com cauda
+twice([X|Xs], [X, X | Ys]) :-
+    twice(Xs, Ys).
+
 
 
 /***********************************************************************************************************************

@@ -15,6 +15,14 @@ falso.
 
 % <FORNEÇA AQUI SUA SOLUÇÃO>
 
+directIn(irina, natasha).
+directIn(natasha, olga).
+directIn(olga, katarina).
+
+
+in(B1, B2) :- directIn(B1, B2).
+in(B1, B2) :- directIn(B1, X), in(X, B2).
+
 
 
 /***********************************************************************************************************************

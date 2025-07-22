@@ -21,7 +21,13 @@ true
 
 % <FORNEÇA AQUI SUA SOLUÇÃO>
 
+% Caso base: espelhar uma folha resulta na própria folha
+swap(leaf(X), leaf(X)).
 
+% Caso recursivo: espelhar uma árvore binária interna
+swap(tree(Left, Right), tree(SwappedRight, SwappedLeft)) :-
+    swap(Left, SwappedLeft),
+    swap(Right, SwappedRight).
 
 /***********************************************************************************************************************
  * CASOS DE TESTE (não modifique o restante do arquivo)

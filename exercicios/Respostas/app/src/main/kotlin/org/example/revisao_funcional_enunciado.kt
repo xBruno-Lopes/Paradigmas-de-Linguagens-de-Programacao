@@ -3,6 +3,8 @@
 Implemente cada exercícios usando duas versões: uma usando recursão de cauda e outra usando filter/map/fold 
 */
 
+import kotlin.math.abs
+
 fun main() {
 
     // Função auxiliar para verificar os resultados dos testes (não modifique)
@@ -147,16 +149,14 @@ fun main() {
     fun saltosSapo(p: Int, s: Int, e: Int): List<Int> {
         // tailrec fun saltar(pos: Int, lista: List<Int>): List<Int> {
         //   val novaPos = pos + s
-        //   if (novaPos >= p) return lista + novaPos // chegou ou passou da saída
+        //   if (novaPos > p) return lista
         //   return saltar(novaPos - e, lista + novaPos)
         // }
         // return saltar(0, emptyList())
-
-        return generateSequence(0 to emptyList<Int>()) { (pos, acc) ->
-        val salto = pos + s
-        if (salto >= p) null // para aqui, não escorrega nem mais um
-        else Pair(salto - e, acc + salto)
-    }.last().second + p
+        return generateSequence(0) { pos -> pos + s - e } // 1. Gera as posições ANTES do salto: 0, 2, 4, 6, 8...
+        .takeWhile { pos -> pos + s <= p }            // 2. Pega enquanto o próximo salto NÃO sair do poço
+        .map { pos -> pos + s }                       // 3. Transforma a posição inicial na posição de aterrissagem
+        .toList()                                     // 4. Converte a sequência para uma lista
     }
 
     // <INCLUA O TRECHO ABAIXO PARA TESTAR SUA SOLUÇÃO>
@@ -190,33 +190,46 @@ fun main() {
         Para cada função, implemente duas versões: uma usando recursão de cauda e outra usando filter/map/fold.
      */
     fun mais_repetidos(lista: List<Int>): List<Int> {
-    //     tailrec fun contar(xs: List<Int>, atual: Int, count: Int, max: Int): Int {
-    //     if (xs.isEmpty()) return maxOf(count, max)
-    //     val head = xs.first()
-    //     val tail = xs.drop(1)
-    //     return if (head == atual)
-    //         contar(tail, atual, count + 1, max)
-    //     else
-    //         contar(tail, head, 1, maxOf(count, max))
-    // }
+        // fun maxRepeticoes(lista: List<Int>): Int {
+        //     return lista.groupingBy { it }
+        //     .eachCount()
+        //     .values
+        //     .maxOrNull() ?: 0
+        // }
 
-    // if (lista.isEmpty()) return 0
-    // return contar(lista.drop(1), lista.first(), 1, 0)
-    //     return listOf<Int>()
+        // fun maisRepetidos(lista: List<Int>): List<Int> {
+        //     val max = maxRepeticoes(lista)
+        //     return lista.groupingBy { it }
+        //     .eachCount()
+        //     .filter { it.value == max }
+        //     .keys
+        //     .sorted()
+        // }
 
-      if (lista.isEmpty()) return 0
-
-    return lista
-        .fold(mutableMapOf<Int, Int>()) { acc, num ->
-            acc[num] = (acc[num] ?: 0) + 1
-            acc
+        // return maisRepetidos(lista)
+        tailrec fun contarOcorrencias(lista: List<Int>, acc: Map<Int, Int> = emptyMap()): Map<Int, Int> {
+            if (lista.isEmpty()) return acc
+            val atual = lista.first()
+            val novoCount = acc[atual]?.plus(1) ?: 1
+            return contarOcorrencias(lista.drop(1), acc + (atual to novoCount))
         }
-        .values
-        .maxOrNull() ?: 0
+
+        fun maxRepeticoesRec(lista: List<Int>): Int {
+            val contagens = contarOcorrencias(lista)
+            return contagens.values.maxOrNull() ?: 0
+        }
+
+        fun maisRepetidosRec(lista: List<Int>): List<Int> {
+            val contagens = contarOcorrencias(lista)
+            val max = contagens.values.maxOrNull() ?: 0
+            return contagens.filter { it.value == max }.keys.sorted()
+        }
+
+        return maisRepetidosRec(lista)
     }
 
     // <INCLUA O TRECHO ABAIXO PARA TESTAR SUA SOLUÇÃO>
-    /*
+    
     assertEquals("mais_repetidos(listOf(1, 2, 3, 4, 5, 6))", listOf(1, 2, 3, 4, 5, 6), mais_repetidos(listOf(1, 2, 3, 4, 5, 6)))
     assertEquals("mais_repetidos(listOf(1, 1, 2, 3, 4, 5, 6))", listOf(1), mais_repetidos(listOf(1, 1, 2, 3, 4, 5, 6)))
     assertEquals("mais_repetidos(listOf(1, 1, 1, 2, 2, 2, 3, 4, 5, 5, 6))", listOf(1, 2), mais_repetidos(listOf(1, 1, 1, 2, 2, 2, 3, 4, 5, 5, 6)))
@@ -227,7 +240,7 @@ fun main() {
     assertEquals("mais_repetidos(listOf(1, 2, 2, 3, 3))", listOf(2, 3), mais_repetidos(listOf(1, 2, 2, 3, 3)))
     assertEquals("mais_repetidos(listOf(1, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5))", listOf(4, 5), mais_repetidos(listOf(1, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5)))
     println("Todos os testes passaram para a função mais_repetidos!")
-    */
+    
 
 
     /*
@@ -257,27 +270,31 @@ fun main() {
         Saída: a quantidade de movimentos de parkour.
      */
     fun parkour(cenario: List<Int>): Int {
-    //     tailrec fun contar(lista: List<Int>, acc: Int): Int {
-    //     if (lista.size < 2) return acc
-    //     val diff = lista[1] - lista[0]
-    //     val novoAcc = if (diff > 1) acc + 1 else acc
-    //     return contar(lista.drop(1), novoAcc)
-    // }
+        // tailrec fun contar(lista: List<Int>, acc: Int): Int {
+        //     if (lista.size < 2) return acc
+        //     var diff = lista[1] - lista[0]
+        //     if (diff < 0) diff = -diff
+        //     val novoAcc = if (diff > 1) acc + 1 else acc
+        //     return contar(lista.drop(1), novoAcc)
+        // }
 
-    // return contar(cenario, 0)
-      return cenario.zipWithNext()
-        .count { (a, b) -> b - a > 1 }
+        // return contar(cenario, 0)
+
+        return cenario.zip(cenario.drop(1)) // pares (atual, próximo)
+        .map { (atual, proximo) -> abs(proximo - atual) } // diferença entre blocos consecutivos
+        .filter { it > 1 } // se subir mais de 1 bloco, é parkour
+        .count()
     }
 
     // <INCLUA O TRECHO ABAIXO PARA TESTAR SUA SOLUÇÃO>
-    /*
+    
     assertEquals("parkour(listOf(1, 1, 3, 3, 4, 6, 4, 2, 2, 1))", 4, parkour(listOf(1, 1, 3, 3, 4, 6, 4, 2, 2, 1)))
     assertEquals("parkour(listOf(1, 2, 1, 2, 3))", 0, parkour(listOf(1, 2, 1, 2, 3)))
     assertEquals("parkour(listOf(4, 2, 5, 4, 5, 3))", 3, parkour(listOf(4, 2, 5, 4, 5, 3)))
     assertEquals("parkour(listOf(1, 3, 5, 7, 6, 5, 4, 3))", 3, parkour(listOf(1, 3, 5, 7, 6, 5, 4, 3)))
     assertEquals("parkour(listOf(4, 2, 5, 3, 6, 4, 3, 4, 3, 2, 3, 2, 3, 5))", 6, parkour(listOf(4, 2, 5, 3, 6, 4, 3, 4, 3, 2, 3, 2, 3, 5)))
     println("Todos os testes passaram para a função parkour!")
-    */
+    
 
 
     /*
@@ -297,31 +314,33 @@ fun main() {
         Saída: 5
      */
     fun vizinhos(lista: List<Int>): Int {
-    //     tailrec fun contar(i: Int, acc: Int): Int {
-    //     if (i >= lista.size) return acc
-    //     val atual = lista[i]
-    //     if (atual == 0) {
-    //         val anterior = if (i > 0) lista[i - 1] else -1
-    //         val proximo = if (i < lista.size - 1) lista[i + 1] else -1
-    //         val ehVizinho = anterior == 1 || proximo == 1
-    //         return contar(i + 1, if (!ehVizinho) acc + 1 else acc)
-    //     } else {
-    //         return contar(i + 1, acc)
-    //     }
-    // }
+        // tailrec fun contar(i: Int, acc: Int): Int {
+        // if (i >= lista.size) return acc
+        // val atual = lista[i]
+        // if (atual == 0) {
+        //     val anterior = if (i > 0) lista[i - 1] else -1
+        //     val proximo = if (i < lista.size - 1) lista[i + 1] else -1
+        //     val ehVizinho = anterior == 1 || proximo == 1
+        //     return contar(i + 1, if (!ehVizinho) acc + 1 else acc)
+        // } else {
+        //     return contar(i + 1, acc)
+        // }
+        // }
 
-    // return contar(0, 0)
-    return lista.mapIndexed { i, valor ->
-        if (valor == 0) {
-            val antes = if (i > 0) lista[i - 1] else -1
-            val depois = if (i < lista.size - 1) lista[i + 1] else -1
-            if (antes != 1 && depois != 1) 1 else 0
-        } else 0
-    }.sum()
+        // return contar(0, 0)
+
+        return lista.withIndex()
+        .filter { (i, vizinho) ->
+            val vizinhoAnterior = lista.getOrNull(i - 1)
+            val proximoVizinho = lista.getOrNull(i + 1)
+            
+            vizinho == 0 && (vizinhoAnterior != 1) && (proximoVizinho != 1)
+        }
+        .count()
     }
 
     // <INCLUA O TRECHO ABAIXO PARA TESTAR SUA SOLUÇÃO>
-    /*
+    
     assertEquals("vizinhos(listOf(0, 1, 0, 0, 1))", 0, vizinhos(listOf(0, 1, 0, 0, 1)))
     assertEquals("vizinhos(listOf(0, 0, 0, 0, 0))", 5, vizinhos(listOf(0, 0, 0, 0, 0)))
     assertEquals("vizinhos(listOf(1, 1, 0, 0))", 1, vizinhos(listOf(1, 1, 0, 0)))
@@ -329,5 +348,5 @@ fun main() {
     assertEquals("vizinhos(listOf(1, 0, 0, 0, 0, 0, 1))", 3, vizinhos(listOf(1, 0, 0, 0, 0, 0, 1)))
     assertEquals("vizinhos(listOf(0, 1, 0, 0, 1, 0))", 0, vizinhos(listOf(0, 1, 0, 1, 0)))
     println("Todos os testes passaram para a função vizinhos!")
-    */
+    
 }

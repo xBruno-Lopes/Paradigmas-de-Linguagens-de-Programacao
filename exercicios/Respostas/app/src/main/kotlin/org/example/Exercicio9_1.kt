@@ -15,26 +15,9 @@ fun main() {
      * Dica: uma opção é fazer um fold que acumula uma lista com os elementos de L na ordem inversa.
      */
     fun inverterLista(lista: List<Int>): List<Int> {
-        // Inverte a lista com fold (coloca cada elemento no início da lista acumulada)
-    val invertida = lista.fold(emptyList<Int>()) { acc, elemento -> listOf(elemento) + acc }
-
-    // Aplicações simbólicas de map e filter para fins didáticos:
-    // - map: identidade (não altera os elementos)
-    // - filter: todos os elementos (não remove nenhum)
-    return invertida
-        .map { it }         // apenas aplica a identidade (didático)
-        .filter { true }
+        // <FORNEÇA AQUI SUA SOLUÇÃO>
+        return lista.fold(emptyList()) { acc, x -> listOf(x) + acc }
     }
-    /*
-    Explicação:
-fold(emptyList()) { acc, elemento -> listOf(elemento) + acc } constrói a lista invertida inserindo cada novo elemento no início da acumuladora acc.
-
-.map { it } aplica uma transformação de identidade — cada elemento é mapeado para ele mesmo.
-
-.filter { true } mantém todos os elementos (nenhum é filtrado).
-
-Se o objetivo for puramente inverter a lista de forma funcional, apenas o fold é necessário. O uso de map e filter é redundante aqui, mas incluído se for exigido explicitamente.
-    */
     // <INCLUA O TRECHO ABAIXO PARA TESTAR SUA SOLUÇÃO>
     
     assertEquals("inverterLista(listOf(1, 2, 3, 4, 5))", listOf(5, 4, 3, 2, 1), inverterLista(listOf(1, 2, 3, 4, 5)))
@@ -51,11 +34,13 @@ Se o objetivo for puramente inverter a lista de forma funcional, apenas o fold �
      */
     fun removerRepetidos(lista: List<Int>): List<Int> {
         // <FORNEÇA AQUI SUA SOLUÇÃO>
-        return listOf<Int>()
+        return lista.fold(emptyList()) { acc, x ->
+            if (x in acc) acc else acc + x
+        }
     }
 
     // <INCLUA O TRECHO ABAIXO PARA TESTAR SUA SOLUÇÃO>
-    /*
+    
     assertEquals("removerRepetidos(listOf(1, 2, 1, 3, 2, 4, 5, 4, 6, 7, 8, 7, 9, 10, 9, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20))", 
                  listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20), 
                  removerRepetidos(listOf(1, 2, 1, 3, 2, 4, 5, 4, 6, 7, 8, 7, 9, 10, 9, 11, 12, 13,
@@ -68,7 +53,7 @@ Se o objetivo for puramente inverter a lista de forma funcional, apenas o fold �
                  listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10), 
                  removerRepetidos(listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)))
     println("Todos os testes passaram para a função removerRepetidos!")
-    */
+    
 
     /**
      * Função que recebe duas listas de inteiros e retorna uma nova lista contendo os elementos que 
@@ -79,11 +64,13 @@ Se o objetivo for puramente inverter a lista de forma funcional, apenas o fold �
      */
     fun interseccaoListas(lista1: List<Int>, lista2: List<Int>): List<Int> {
         // <FORNEÇA AQUI SUA SOLUÇÃO>
-        return listOf<Int>()
+        return lista1.fold(emptyList()) { acc, x ->
+            if (x in lista2 && x !in acc) acc + x else acc
+        }
     }
 
     // <INCLUA O TRECHO ABAIXO PARA TESTAR SUA SOLUÇÃO>
-    /*
+    
     assertEquals("interseccaoListas(listOf(1, 2, 3, 4, 5), listOf(1, 2, 3, 4, 5))", 
                  listOf(1, 2, 3, 4, 5), 
                  interseccaoListas(listOf(1, 2, 3, 4, 5), listOf(1, 2, 3, 4, 5)).sorted())
@@ -100,7 +87,7 @@ Se o objetivo for puramente inverter a lista de forma funcional, apenas o fold �
                  listOf(1, 2, 3, 4, 5), 
                  interseccaoListas(listOf(1, 2, 3, 4, 5), listOf(6, 7, 8, 9, 10, 1, 2, 3, 4, 5)).sorted())
     println("Todos os testes passaram para a função interseccaoListas!")
-    */
+    
 
     /**
      * Função que recebe uma lista L de inteiros e retornar um Pair com o maior e o menor valor da lista.
@@ -111,15 +98,21 @@ Se o objetivo for puramente inverter a lista de forma funcional, apenas o fold �
      */
     fun maiorMenorLista(lista: List<Int>): Pair<Int, Int> {
         // <FORNEÇA AQUI SUA SOLUÇÃO>
-        return Pair(0, 0)
+        if (lista.isEmpty()) return Pair(0, 0) // Retorna 0,0 se a lista estiver vazia
+        
+        return lista.fold(Pair(lista[0], lista[0])) { acc, x ->
+            val maior = if (x > acc.first) x else acc.first
+            val menor = if (x < acc.second) x else acc.second
+            Pair(maior, menor)
+        }
     }
 
     // <INCLUA O TRECHO ABAIXO PARA TESTAR SUA SOLUÇÃO>
-    /*
+    
     assertEquals("maiorMenorLista(listOf(1, 2))", Pair(2, 1), maiorMenorLista(listOf(1, 2)))
     assertEquals("maiorMenorLista(listOf(1, 5, 4, 3))", Pair(5, 1), maiorMenorLista(listOf(1, 5, 4, 3)))
     assertEquals("maiorMenorLista(listOf(9, 6, 4, 8, 1, 2))", Pair(9, 1), maiorMenorLista(listOf(9, 6, 4, 8, 1, 2)))
     assertEquals("maiorMenorLista(listOf(9, 6, 4, 8, 1, 2, 1))", Pair(9, 1), maiorMenorLista(listOf(9, 6, 4, 8, 1, 2, 1)))
     println("Todos os testes passaram para a função maiorMenorLista!")
-    */
+    
 }

@@ -29,6 +29,36 @@ R = [valmont, metz, frankfurt, bangkok, auckland, hamilton, raglan].
 
 % <FORNEÇA AQUI SUA SOLUÇÃO>
 
+byCar(auckland,hamilton).  
+byCar(hamilton,raglan).  
+byCar(valmont,saarbruecken).  
+byCar(valmont,metz).  
+ 
+byTrain(metz,frankfurt).  
+byTrain(saarbruecken,frankfurt).  
+byTrain(metz,paris).  
+byTrain(saarbruecken,paris).  
+ 
+byPlane(frankfurt,bangkok).  
+byPlane(frankfurt,singapore).  
+byPlane(paris,losAngeles).  
+byPlane(bangkok,auckland).  
+byPlane(singapore,auckland).  
+byPlane(losAngeles,auckland).
+
+% Define conexões possíveis (qualquer meio)
+connected(X, Y) :- byCar(X, Y).
+connected(X, Y) :- byTrain(X, Y).
+connected(X, Y) :- byPlane(X, Y).
+
+% Caso base: rota direta (origem = destino)
+travel(C, C, [C]).
+
+% Caso recursivo: há conexão direta de C1 para CNext, e rota de CNext a C2
+travel(C1, C2, [C1|R]) :-
+    connected(C1, CNext),
+    travel(CNext, C2, R).
+
 
 
 /***********************************************************************************************************************

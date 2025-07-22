@@ -17,11 +17,13 @@ fun main() {
      */
     fun estaOrdenadaCrescente(lista: List<Int>): Boolean {
         // <FORNEÇA AQUI SUA SOLUÇÃO>
-        return false
+        return lista.fold(Pair(true, Int.MIN_VALUE)) { acc, x ->
+            if (acc.first && x >= acc.second) Pair(true, x) else Pair(false, x)
+        }.first
     }
 
     // <INCLUA O TRECHO ABAIXO PARA TESTAR SUA SOLUÇÃO>
-    /*
+    
     assertEquals("estaOrdenadaCrescente(listOf(1, 1, 2, 3))", true, estaOrdenadaCrescente(listOf(1, 1, 2, 3)))
     assertEquals("estaOrdenadaCrescente(listOf(1, 2, 6, 8, 3))", false, estaOrdenadaCrescente(listOf(1, 2, 6, 8, 3)))
     assertEquals("estaOrdenadaCrescente(listOf(500))", true, estaOrdenadaCrescente(listOf(500)))
@@ -30,7 +32,7 @@ fun main() {
     assertEquals("estaOrdenadaCrescente(listOf(1, 6, 2, 8, 3))", false, estaOrdenadaCrescente(listOf(1, 6, 2, 8, 3)))
     assertEquals("estaOrdenadaCrescente(listOf(1, 3, 2, 4, 5))", false, estaOrdenadaCrescente(listOf(1, 3, 2, 4, 5)))
     println("Todos os testes passaram para a função estaOrdenadaCrescente!")
-    */
+    
 
     /**
      * Função que recebe uma lista L de inteiros e um inteiro K, e retorna um Pair contendo
@@ -40,15 +42,17 @@ fun main() {
      */
     fun particao(lista: List<Int>, K: Int): Pair<List<Int>, List<Int>> {
         // <FORNEÇA AQUI SUA SOLUÇÃO>
-        return Pair(listOf<Int>(), listOf<Int>())
+        return lista.fold(Pair(emptyList(), emptyList())) { acc, x ->
+            if (x <= K) Pair(acc.first + x, acc.second) else Pair(acc.first, acc.second + x)
+        }
     }
 
     // <INCLUA O TRECHO ABAIXO PARA TESTAR SUA SOLUÇÃO>
-    /*
+    
     assertEquals("particao(listOf(1, 2, 3, 4, 5), 3)", Pair(listOf(1, 2, 3), listOf(4, 5)), particao(listOf(1, 2, 3, 4, 5), 3))
     assertEquals("particao(listOf(1, 2, 3, 4, 5), 1)", Pair(listOf(1), listOf(2, 3, 4, 5)), particao(listOf(1, 2, 3, 4, 5), 1))
     println("Todos os testes passaram para a função particao!")
-    */
+    
 
     /**
      * Função que recebe uma lista L de inteiros e retorna um Pair contendo uma lista com os valores
@@ -57,17 +61,19 @@ fun main() {
      */
     fun separarParesImpares(lista: List<Int>): Pair<List<Int>, List<Int>> {
         // <FORNEÇA AQUI SUA SOLUÇÃO>
-        return Pair(listOf<Int>(), listOf<Int>())
+        return lista.fold(Pair(emptyList(), emptyList())) { acc, x ->
+            if (x % 2 == 0) Pair(acc.first, acc.second + x) else Pair(acc.first + x, acc.second)
+        }
     }
 
     // <INCLUA O TRECHO ABAIXO PARA TESTAR SUA SOLUÇÃO>
-    /*
+    
     assertEquals("separarParesImpares(listOf(1, 2))", Pair(listOf(1), listOf(2)), separarParesImpares(listOf(1, 2)))
     assertEquals("separarParesImpares(listOf(1, 5, 4, 3))", Pair(listOf(1, 5, 3), listOf(4)), separarParesImpares(listOf(1, 5, 4, 3)))
     assertEquals("separarParesImpares(listOf(9, 6, 4, 8, 1, 2))", Pair(listOf(9, 1), listOf(6, 4, 8, 2)), separarParesImpares(listOf(9, 6, 4, 8, 1, 2)))
     assertEquals("separarParesImpares(listOf(9, 6, 4, 8, 1, 2, 1))", Pair(listOf(9, 1, 1), listOf(6, 4, 8, 2)), separarParesImpares(listOf(9, 6, 4, 8, 1, 2, 1)))
     println("Todos os testes passaram para a função separarParesImpares!")
-    */
+    
 
     /**
      * Em uma rua as casas são numeradas de 0 até N-1.
@@ -80,11 +86,17 @@ fun main() {
      */
     fun abastecimentoCasas(N: Int, caminhoes: List<Triple<Int, Int, Int>>): List<Int> {
         // <FORNEÇA AQUI SUA SOLUÇÃO>
-        return listOf<Int>()
+        if (caminhoes.isEmpty()) return List(N) { 0 } // Retorna uma lista de zeros se não houver caminhões
+        return (0 until N).map { numCasa ->
+            caminhoes.fold(0) { acc, caminhao ->
+                val (casaA, casaB, litros) = caminhao
+                if (numCasa in casaA..casaB) acc + litros else acc
+            }
+        }
     }
 
     // <INCLUA O TRECHO ABAIXO PARA TESTAR SUA SOLUÇÃO>
-    /*
+    
     assertEquals("abastecimentoCasas(7, listOf(Triple(0, 2, 4), Triple(5, 6, 5)))", 
                  listOf(4, 4, 4, 0, 0, 5, 5), 
                  abastecimentoCasas(7, listOf(Triple(0, 2, 4), Triple(5, 6, 5))))
@@ -104,5 +116,5 @@ fun main() {
                  listOf(33, 45, 58, 95, 81, 98, 73, 66, 83, 69), 
                  abastecimentoCasas(10, listOf(Triple(1, 3, 13), Triple(4, 5, 30), Triple(0, 3, 20), Triple(0, 0, 5), Triple(8, 9, 27), Triple(3, 8, 12), Triple(3, 9, 25), Triple(6, 7, 2), Triple(2, 3, 13), Triple(4, 7, 8), Triple(6, 6, 7), Triple(1, 5, 4), Triple(4, 8, 2), Triple(5, 9, 17), Triple(0, 3, 8))))
     println("Todos os testes passaram para a função abastecimentoCasas!")
-    */
+    
 }

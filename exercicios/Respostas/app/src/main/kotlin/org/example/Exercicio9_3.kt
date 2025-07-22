@@ -16,11 +16,17 @@ fun main() {
      */
     fun filtrarLista(lista: List<Int>, funcao: (Int) -> Boolean): List<Int> {
         // <FORNEÇA AQUI SUA SOLUÇÃO>
-        return listOf<Int>()
+        // Exemplo de implementação usando fold
+        return lista.fold(mutableListOf<Int>()) { acc, item ->
+            if (funcao(item)) {
+                acc.add(item)
+            }
+            acc
+        }
     }
 
     // <INCLUA O TRECHO ABAIXO PARA TESTAR SUA SOLUÇÃO>
-    /*
+    
     assertEquals("filtrarLista(listOf(1, 2, 3, 4, 5), { it % 2 == 0 })", 
                  listOf(2, 4), filtrarLista(listOf(1, 2, 3, 4, 5), { it % 2 == 0 }))
     assertEquals("filtrarLista(listOf(1, 2, 3, 4, 5), { it % 2 != 0 })",
@@ -30,7 +36,7 @@ fun main() {
     assertEquals("filtrarLista(listOf(1, 2, 3, 4, 5), { it < 3 })",
                  listOf(1, 2), filtrarLista(listOf(1, 2, 3, 4, 5), { it < 3 }))
     println("Todos os testes passaram para a função filtrarLista!")
-    */
+    
 
     /**
      * Função que recebe uma lista L de inteiros e uma função F (que recebe inteiro e retorna inteiro),
@@ -40,17 +46,21 @@ fun main() {
      */
     fun aplicarFuncao(lista: List<Int>, funcao: (Int) -> Int): List<Int> {
         // <FORNEÇA AQUI SUA SOLUÇÃO>
-        return listOf<Int>()
+        // Exemplo de implementação usando fold
+        return lista.fold(mutableListOf<Int>()) { acc, item ->
+            acc.add(funcao(item))
+            acc
+        }
     }
 
     // <INCLUA O TRECHO ABAIXO PARA TESTAR SUA SOLUÇÃO>
-    /*
+    
     assertEquals("aplicarFuncao(listOf(1, 2, 3, 4, 5), { it * 2 })", 
                  listOf(2, 4, 6, 8, 10), aplicarFuncao(listOf(1, 2, 3, 4, 5), { it * 2 }))
     assertEquals("aplicarFuncao(listOf(1, 2, 3, 4, 5), { it + 1 })",
                  listOf(2, 3, 4, 5, 6), aplicarFuncao(listOf(1, 2, 3, 4, 5), { it + 1 }))
     println("Todos os testes passaram para a função aplicarFuncao!")
-    */
+    
 
     /**
      * Função que recebe uma string S e retorna um booleano indicando se S é um palíndromo.
@@ -64,11 +74,14 @@ fun main() {
      */
     fun ehPalindromo(palavra: String): Boolean {
         // <FORNEÇA AQUI SUA SOLUÇÃO>
-        return false
+        val n = palavra.length
+        return (0 until n / 2).fold(true) { acc, i ->
+            acc && (palavra[i] == palavra[n - i - 1])
+        }
     }
 
     // <INCLUA O TRECHO ABAIXO PARA TESTAR SUA SOLUÇÃO>
-    /*
+    
     assertEquals("ehPalindromo(\"ovo\")", true, ehPalindromo("ovo"))
     assertEquals("ehPalindromo(\"arara\")", true, ehPalindromo("arara"))
     assertEquals("ehPalindromo(\"radar\")", true, ehPalindromo("radar"))
@@ -76,5 +89,5 @@ fun main() {
     assertEquals("ehPalindromo(\"rever\")", true, ehPalindromo("rever"))
     assertEquals("ehPalindromo(\"reconhecer\")", false, ehPalindromo("reconhecer"))
     println("Todos os testes passaram para a função ehPalindromo!")
-    */
+    
 }

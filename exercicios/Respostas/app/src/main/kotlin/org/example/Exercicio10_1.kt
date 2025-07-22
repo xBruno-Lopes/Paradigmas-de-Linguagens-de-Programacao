@@ -47,15 +47,19 @@ fun main() {
      * Se for um triângulo, use a fórmula (base * altura) / 2.
      */
     fun calcularArea(forma: Forma): Double {
-        return 0.0
+        return when (forma) {
+            is Circulo -> PI * forma.raio * forma.raio
+            is Retangulo -> forma.largura * forma.altura
+            is Triangulo -> (forma.base * forma.altura) / 2
+        }
     }
 
-    /*
+    
     assertEquals("calcularArea", 78.53981633974483, calcularArea(Circulo(5.0)))
     assertEquals("calcularArea", 24.0, calcularArea(Retangulo(4.0, 6.0)))
     assertEquals("calcularArea", 12.0, calcularArea(Triangulo(3.0, 8.0)))
     println("Todos os testes passaram para a função calcularArea!")
-    */
+    
 
     /**
      * Determine o valor de uma expressão aritmética definida pelo tipo 'Expressao'.
@@ -66,14 +70,18 @@ fun main() {
      *       when precisa ser exaustivo (faltando a multiplicação).
      */
     fun avaliarExpressao(expressao: Expressao): Int {
-        return 0
+        return when (expressao) {
+            is Numero -> expressao.valor
+            is Adicao -> avaliarExpressao(expressao.esquerda) + avaliarExpressao(expressao.direita)
+            is Multiplicacao -> avaliarExpressao(expressao.esquerda) * avaliarExpressao(expressao.direita)
+        }
     }
 
-    /*
+    
     assertEquals("avaliarExpressao", 11, avaliarExpressao(Adicao(Numero(5), Multiplicacao(Numero(2), Numero(3)))))
     assertEquals("avaliarExpressao", 10, avaliarExpressao(Numero(10)))
     println("Todos os testes passaram para a função avaliarExpressao!")
-    */
+    
 
     /**
      * Calcule o comprimento de uma Lista representada pelo tipo 'Lista'.
@@ -81,17 +89,20 @@ fun main() {
      * Uma lista com pelo menos um elemento (Cons) tem comprimento 1 + comprimento da lista restante (tail).
      */
     fun <A> comprimentoLista(lista: Lista<A>): Int {
-        return 0
+        return when (lista) {
+            is Lista.Nil -> 0
+            is Lista.Cons -> 1 + comprimentoLista(lista.tail)
+        }
     }
 
-    /*
+    
     val lista1: Lista<Int> = Lista.Cons(1, Lista.Cons(2, Lista.Cons(3, Lista.Nil)))
     val lista2: Lista<String> = Lista.Cons("a", Lista.Cons("b", Lista.Nil))
     assertEquals("comprimentoLista", 3, comprimentoLista(lista1))
     assertEquals("comprimentoLista", 2, comprimentoLista(lista2))
     assertEquals("comprimentoLista", 0, comprimentoLista(Lista.Nil))
     println("Todos os testes passaram para a função comprimentoLista!")
-    */
+    
 
     /**
      * Inverta uma lista representada pelo tipo 'Lista'.
@@ -99,32 +110,47 @@ fun main() {
      * Obs.: filter/map/fold são definidas para 'list', não para 'Lista'.
      */
     fun <A> inverterLista(lista: Lista<A>): Lista<A> {
-        return Lista.Nil
+        fun inverterRecursivo(lista: Lista<A>, acumulador: Lista<A>): Lista<A> {
+            return when (lista) {
+                is Lista.Nil -> acumulador
+                is Lista.Cons -> inverterRecursivo(lista.tail, Lista.Cons(lista.head, acumulador))
+            }
+        }
+        return inverterRecursivo(lista, Lista.Nil)
     }
 
-    /*
+    
     val listaInvertida1: Lista<Int> = Lista.Cons(3, Lista.Cons(2, Lista.Cons(1, Lista.Nil)))
     val listaInvertida2: Lista<String> = Lista.Cons("b", Lista.Cons("a", Lista.Nil))
     assertEquals("inverterLista", listaInvertida1, inverterLista(lista1), ::comparaListas)
     assertEquals("inverterLista", listaInvertida2, inverterLista(lista2), ::comparaListas)
     assertEquals("inverterLista", Lista.Nil, inverterLista(Lista.Nil), ::comparaListas)
     println("Todos os testes passaram para a função inverterLista!")
-    */
+    
 
     /**
      * Encontra o máximo valor em uma lista de Int representada pelo tipo 'Lista<Int>'.
      * Para listas vazias, retorne Int.MIN_VALUE.
      */
     fun maximoLista(lista: Lista<Int>): Int {
-        return 0
+        fun maximoRecursivo(lista: Lista<Int>, maxAtual: Int): Int {
+            return when (lista) {
+                is Lista.Nil -> maxAtual
+                is Lista.Cons -> maximoRecursivo(lista.tail, max(maxAtual, lista.head))
+            }
+        }
+        if (lista is Lista.Nil) {
+            return Int.MIN_VALUE
+        }
+        return maximoRecursivo(lista, Int.MIN_VALUE)
     }
 
-    /*
+    
     val listaMax: Lista<Int> = Lista.Cons(5, Lista.Cons(10, Lista.Cons(2, Lista.Cons(15, Lista.Nil))))
     assertEquals("maximoLista", 15, maximoLista(listaMax))
     assertEquals("maximoLista", 5, maximoLista(Lista.Cons(5, Lista.Nil)))
     println("Todos os testes passaram para a função maximoLista!")
-    */
+    
 
     /**
      * Concatena duas Listas representadas pelo tipo 'Lista'.
@@ -132,15 +158,20 @@ fun main() {
      *       Recursivamente, adicione a cauda da primeira lista no início da segunda lista.
      */
     fun <A> concatenaListas(lista1: Lista<A>, lista2: Lista<A>): Lista<A> {
-        return Lista.Nil
+        return when (lista1) {
+            is Lista.Nil -> lista2
+            is Lista.Cons -> Lista.Cons(lista1.head, concatenaListas(lista1.tail, lista2))
+        }
+        // Se lista1 for Nil, retorne lista2 (caso base).
+        // Se lista1 for Cons, crie um novo Cons com o head de lista1
     }
 
-    /*
+    
     val r1: Lista<Int> = Lista.Cons(1, Lista.Cons(2, Lista.Cons(3, Lista.Cons(4, Lista.Nil))))
     val r2: Lista<String> = Lista.Cons("a", Lista.Cons("b", Lista.Cons("c", Lista.Cons("d", Lista.Nil))))
     assertEquals("concatenaListas", r1, concatenaListas(Lista.Cons(1, Lista.Cons(2, Lista.Nil)), Lista.Cons(3, Lista.Cons(4, Lista.Nil))), ::comparaListas)
     assertEquals("concatenaListas", r2, concatenaListas(Lista.Cons("a", Lista.Cons("b", Lista.Nil)), Lista.Cons("c", Lista.Cons("d", Lista.Nil))), ::comparaListas)
     assertEquals("concatenaListas", Lista.Nil, concatenaListas(Lista.Nil, Lista.Nil), ::comparaListas)
     println("Todos os testes passaram para a função concatenaListas!")
-    */
+    
 }

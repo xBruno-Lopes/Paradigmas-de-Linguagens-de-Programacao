@@ -14,6 +14,12 @@ Exemplos:
 
 % <FORNEÇA AQUI SUA SOLUÇÃO>
 
+% Caso base: listas vazias resultam em lista vazia
+intercala2([], [], []).
+
+% Passo recursivo: cria um par [X,Y] e continua com as caudas
+intercala2([X|Xs], [Y|Ys], [[X,Y]|Zs]) :-
+    intercala2(Xs, Ys, Zs).
 
 
 /***********************************************************************************************************************

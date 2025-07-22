@@ -14,6 +14,13 @@ Exemplos:
 
 % <FORNEÇA AQUI SUA SOLUÇÃO>
 
+% Caso base: duas listas vazias resultam em lista vazia
+intercala1([], [], []).
+
+% Passo recursivo: intercala cabeça de L1, cabeça de L2, e continua recursivamente
+intercala1([X|Xs], [Y|Ys], [X,Y|Zs]) :-
+    intercala1(Xs, Ys, Zs).
+
 
 
 /***********************************************************************************************************************

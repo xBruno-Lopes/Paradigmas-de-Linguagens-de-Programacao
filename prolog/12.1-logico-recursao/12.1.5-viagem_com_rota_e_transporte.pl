@@ -34,6 +34,36 @@ R = go(car, valmont, saarbruecken, go(train, saarbruecken, frankfurt, go(plane, 
 
 % <FORNEÇA AQUI SUA SOLUÇÃO>
 
+byCar(auckland, hamilton).  
+byCar(hamilton, raglan).  
+byCar(valmont, saarbruecken).  
+byCar(valmont, metz).  
+ 
+byTrain(metz, frankfurt).  
+byTrain(saarbruecken, frankfurt).  
+byTrain(metz, paris).  
+byTrain(saarbruecken, paris).  
+ 
+byPlane(frankfurt, bangkok).  
+byPlane(frankfurt, singapore).  
+byPlane(paris, losAngeles).  
+byPlane(bangkok, auckland).  
+byPlane(singapore, auckland).  
+byPlane(losAngeles, auckland).
+
+% Etapas diretas com tipo de transporte
+go(car, X, Y)    :- byCar(X, Y).
+go(train, X, Y)  :- byTrain(X, Y).
+go(plane, X, Y)  :- byPlane(X, Y).
+
+% Caso base: viagem direta
+travel(C1, C2, go(M, C1, C2)) :-
+    go(M, C1, C2).
+
+% Caso recursivo: encadeamento de etapas
+travel(C1, C2, go(M, C1, X, R)) :-
+    go(M, C1, X),
+    travel(X, C2, R).
 
 
 /***********************************************************************************************************************

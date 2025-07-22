@@ -26,6 +26,24 @@ paiOuMae(silene, cristiano). % silene é mãe de cristiano
 
 
 % <FORNEÇA AQUI SUA SOLUÇÃO>
+irmaoOuIrma(Irmao1, Irmao2) :- 
+    paiOuMae(PaiOuMae, Irmao1), 
+    paiOuMae(PaiOuMae, Irmao2), 
+    Irmao1 \= Irmao2.
+
+tioOuTia(TioOuTia, SobrinhoOuSobrinha) :- 
+    paiOuMae(PaiOuMae, SobrinhoOuSobrinha), 
+    irmaoOuIrma(TioOuTia, PaiOuMae).
+
+avoOuAvo(Avo, Neto) :- 
+    paiOuMae(Avo, PaiMae),
+    paiOuMae(PaiMae, Neto).
+
+primoOuPrima(Pessoa1, Pessoa2) :- 
+    paiOuMae(PaiOuMae1, Pessoa1), 
+    paiOuMae(PaiOuMae2, Pessoa2), 
+    irmaoOuIrma(PaiOuMae1, PaiOuMae2), 
+    Pessoa1 \= Pessoa2.
 
 
 /***********************************************************************************************************************

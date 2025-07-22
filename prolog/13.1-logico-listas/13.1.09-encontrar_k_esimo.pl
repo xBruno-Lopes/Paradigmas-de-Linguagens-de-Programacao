@@ -11,6 +11,15 @@ Exemplos:
 
 % <FORNEÇA AQUI SUA SOLUÇÃO>
 
+% Caso base: K=1, o elemento é a cabeça da lista
+kesimo(1, [X|_], X).
+
+% Caso recursivo: K > 1, diminui K e avança na lista
+kesimo(K, [_|Xs], X) :-
+    K > 1,
+    K1 is K - 1,
+    kesimo(K1, Xs, X).
+
 
 
 /***********************************************************************************************************************

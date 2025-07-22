@@ -19,7 +19,7 @@ false.
 
 % <FORNEÇA AQUI SUA SOLUÇÃO>
 
-
+second(X, [_, X | _]).
 
 /***********************************************************************************************************************
  * CASOS DE TESTE (não modifique o restante do arquivo)

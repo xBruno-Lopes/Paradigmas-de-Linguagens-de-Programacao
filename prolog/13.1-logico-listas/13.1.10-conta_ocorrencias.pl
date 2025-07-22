@@ -10,6 +10,19 @@ Exemplos:
 
 % <FORNEÇA AQUI SUA SOLUÇÃO>
 
+% Caso base: lista vazia, o elemento não ocorre
+conta_ocorrencias([], _, 0).
+
+% Caso em que a cabeça é X: soma 1 e conta nas caudas
+conta_ocorrencias([X|Xs], X, K) :-
+    conta_ocorrencias(Xs, X, K1),
+    K is K1 + 1.
+
+% Caso em que a cabeça não é X: conta nas caudas normalmente
+conta_ocorrencias([Y|Xs], X, K) :-
+    X \= Y,
+    conta_ocorrencias(Xs, X, K).
+
 
 
 /***********************************************************************************************************************

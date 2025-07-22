@@ -129,35 +129,47 @@ fun main() {
    * Dica: Para criar uma lista contendo N zeros, você pode usar `List(N) { 0 }`.
    */
   fun abastecimentoCasas(N: Int, caminhoes: List<Triple<Int, Int, Int>>): List<Int> {
-    tailrec fun entregaUnica(numCasa: Int, caminhao: List<Triple<Int, Int, Int>>, acumulador: List<Int>): List<Int>  {
-        if (caminhao.isEmpty()) {
+    tailrec fun entregaUnica(numCasa: Int, caminhao: Triple<Int, Int, Int>, acumulador: List<Int>): List<Int>  {
+        val (casaA, casaB, litros) = caminhao
+
+        // Caso base: Se a casa atual já passou do final do intervalo (B),
+        // a entrega deste caminhão terminou. Retorna o estado final.
+        if (numCasa > casaB) {
             return acumulador
         }
-        val cabeca = caminhao.first()
-        val cauda = caminhao.drop(1)
-        val (casaA, casaB, litros) = cabeca
 
-        if (numCasa in casaA..casaB) {
-            return entregaUnica(numCasa + 1, cauda, acumulador + listOf(litros))
-        } else {
-            return entregaUnica(numCasa + 1, cauda, acumulador)
-        }
+        // Cria uma lista mutável para poder alterar o valor em um índice específico.
+        val casasAtualizadas = acumulador.toMutableList()
+        
+        // Adiciona os litros na casa atual.
+        casasAtualizadas[numCasa] = acumulador[numCasa] + litros
+
+        // Chamada recursiva para a próxima casa do intervalo (casaAtual + 1).
+        return entregaUnica(numCasa + 1, caminhao, casasAtualizadas.toList())
     }
-    tailrec fun entregaTotal(numCasa: Int, caminhao: List<Triple<Int, Int, Int>>, acumulador: List<Int>): List<Int> {
-        if (caminhao.isEmpty()) {
+
+    tailrec fun entregaTotal(caminhoes: List<Triple<Int, Int, Int>>, acumulador: List<Int>): List<Int> {
+        // Caso base: Se não há mais caminhões na lista, o processo terminou.
+        if (caminhoes.isEmpty()) {
             return acumulador
         }
-        val cabeca = caminhao.first()
-        val cauda = caminhao.drop(1)
-        val (casaA, casaB, litros) = cabeca
+        val cabeca = caminhoes.first()
+        val cauda = caminhoes.drop(1)
+        val (casaA, _, _) = cabeca
 
-        if (numCasa in casaA..casaB) {
-            return entregaUnica(numCasa + 1, cauda, acumulador + listOf(litros))
-        } else {
-            return entregaUnica(numCasa + 1, cauda, acumulador)
-        }
+        // Chama a função interna para aplicar a entrega do caminhão atual.
+        // A entrega começa na casa inicial 'casaA' do caminhão.
+        val casasDepoisDaEntrega = entregaUnica(casaA, cabeca, acumulador)
+
+        // Chamada recursiva para processar o resto dos caminhões,
+        // passando o estado atualizado das casas.
+        return entregaTotal(cauda, casasDepoisDaEntrega)
     }
-    return entregaTotal(0, caminhoes, emptyList())
+    // Ponto de partida:
+    // 1. Cria a lista inicial com N casas, todas com 0 litros.
+    // 2. Inicia o processo chamando a função que itera sobre os caminhões.
+    val casasIniciais = List(N) { 0 }
+    return entregaTotal(caminhoes, casasIniciais)
   }
 
   // <INCLUA O TRECHO ABAIXO PARA TESTAR SUA SOLUÇÃO>

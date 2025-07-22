@@ -14,6 +14,12 @@ Exemplos:
 
 % <FORNEÇA AQUI SUA SOLUÇÃO>
 
+% Caso base: listas vazias resultam em lista vazia
+intercala3([], [], []).
+
+% Passo recursivo: cria o termo j(X,Y) e continua com as caudas
+intercala3([X|Xs], [Y|Ys], [j(X,Y)|Zs]) :-
+    intercala3(Xs, Ys, Zs).
 
 
 /***********************************************************************************************************************

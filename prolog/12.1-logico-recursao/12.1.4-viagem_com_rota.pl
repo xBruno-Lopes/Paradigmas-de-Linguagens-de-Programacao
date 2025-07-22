@@ -32,7 +32,36 @@ R = go(valmont, metz, go(metz, frankfurt, go(frankfurt, bangkok, go(bangkok, auc
 
 % <FORNEÇA AQUI SUA SOLUÇÃO>
 
+byCar(auckland, hamilton).  
+byCar(hamilton, raglan).  
+byCar(valmont, saarbruecken).  
+byCar(valmont, metz).  
+ 
+byTrain(metz, frankfurt).  
+byTrain(saarbruecken, frankfurt).  
+byTrain(metz, paris).  
+byTrain(saarbruecken, paris).  
+ 
+byPlane(frankfurt, bangkok).  
+byPlane(frankfurt, singapore).  
+byPlane(paris, losAngeles).  
+byPlane(bangkok, auckland).  
+byPlane(singapore, auckland).  
+byPlane(losAngeles, auckland).
 
+% Fato auxiliar: uma viagem direta por qualquer meio de transporte
+go(X, Y) :- byCar(X, Y).
+go(X, Y) :- byTrain(X, Y).
+go(X, Y) :- byPlane(X, Y).
+
+% Caso base: há uma viagem direta de C1 a C2
+travel(C1, C2, go(C1, C2)) :- 
+    go(C1, C2).
+
+% Caso recursivo: C1 vai até uma cidade intermediária X, e de X até C2 há uma rota R
+travel(C1, C2, go(C1, X, R)) :- 
+    go(C1, X),
+    travel(X, C2, R).
 
 /***********************************************************************************************************************
  * CASOS DE TESTE (não modifique o restante do arquivo)

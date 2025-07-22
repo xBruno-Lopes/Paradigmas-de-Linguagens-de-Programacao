@@ -40,7 +40,61 @@ genero(Pessoa, feminino ) :- mae(Pessoa, _).
 
 % <FORNEÇA AQUI SUA SOLUÇÃO>
 
+irmaoOuIrma(Irmao1, Irmao2) :- 
+    paiOuMae(PaiOuMae, Irmao1), 
+    paiOuMae(PaiOuMae, Irmao2), 
+    Irmao1 \= Irmao2.
 
+tioOuTia(TioOuTia, SobrinhoOuSobrinha) :- 
+    paiOuMae(PaiOuMae, SobrinhoOuSobrinha), 
+    irmaoOuIrma(TioOuTia, PaiOuMae).
+
+avoOuAvo(Avo, Neto) :- 
+    paiOuMae(Avo, PaiMae),
+    paiOuMae(PaiMae, Neto).
+
+primoOuPrima(Pessoa1, Pessoa2) :- 
+    paiOuMae(PaiOuMae1, Pessoa1), 
+    paiOuMae(PaiOuMae2, Pessoa2), 
+    irmaoOuIrma(PaiOuMae1, PaiOuMae2), 
+    Pessoa1 \= Pessoa2.
+
+paiOuMae(Progenitor, Filho) :- 
+    pai(Progenitor, Filho); 
+    mae(Progenitor, Filho).
+
+
+irmao(Irmao, OutraPessoa) :- 
+    irmaoOuIrma(Irmao, OutraPessoa),
+    genero(Irmao, masculino).
+
+irma(Irma, OutraPessoa) :- 
+    irmaoOuIrma(Irma, OutraPessoa),
+    genero(Irma, feminino).
+
+tio(Tio, SobrinhoOuSobrinha) :- 
+    tioOuTia(Tio, SobrinhoOuSobrinha), 
+    genero(Tio, masculino).
+
+tia(Tia, SobrinhoOuSobrinha) :- 
+    tioOuTia(Tia, SobrinhoOuSobrinha), 
+    genero(Tia, feminino).
+
+avo_homem(Avoh, NetoOuNeta) :- 
+    avoOuAvo(Avoh, NetoOuNeta),
+    genero(Avoh, masculino). 
+
+avo_mulher(Avom, NetoOuNeta) :- 
+    avoOuAvo(Avom, NetoOuNeta),
+    genero(Avom, feminino).
+
+primo(Primo, OutraPessoa) :- 
+    primoOuPrima(Primo, OutraPessoa),
+    genero(Primo, masculino).
+    
+prima(Prima, OutraPessoa) :- 
+    primoOuPrima(Prima, OutraPessoa),
+    genero(Prima, feminino).  
 
 /***********************************************************************************************************************
  * CASOS DE TESTE (não modifique o restante do arquivo)

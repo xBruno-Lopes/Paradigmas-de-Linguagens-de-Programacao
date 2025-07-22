@@ -33,6 +33,38 @@ bangkok -> auckland (avião), auckland -> hamilton (carro), hamilton -> raglan (
 
 % <FORNEÇA AQUI SUA SOLUÇÃO>
 
+byCar(auckland,hamilton).  
+byCar(hamilton,raglan).  
+byCar(valmont,saarbruecken).  
+byCar(valmont,metz).  
+ 
+byTrain(metz,frankfurt).  
+byTrain(saarbruecken,frankfurt).  
+byTrain(metz,paris).  
+byTrain(saarbruecken,paris).  
+ 
+byPlane(frankfurt,bangkok).  
+byPlane(frankfurt,singapore).  
+byPlane(paris,losAngeles).  
+byPlane(bangkok,auckland).  
+byPlane(singapore,auckland).  
+byPlane(losAngeles,auckland).
+
+% Caso base: existe uma viagem direta de C1 para C2, por qualquer meio de transporte
+travel(C1, C2) :- 
+    byCar(C1, C2).
+
+travel(C1, C2) :- 
+    byTrain(C1, C2).
+
+travel(C1, C2) :- 
+    byPlane(C1, C2).
+
+% Caso recursivo: se posso ir de C1 a alguma cidade intermediária Cx,
+% e de lá posso chegar a C2 por qualquer meio, então posso ir de C1 a C2.
+travel(C1, C2) :- 
+    (byCar(C1, Cx); byTrain(C1, Cx); byPlane(C1, Cx)),
+    travel(Cx, C2).
 
 
 /***********************************************************************************************************************

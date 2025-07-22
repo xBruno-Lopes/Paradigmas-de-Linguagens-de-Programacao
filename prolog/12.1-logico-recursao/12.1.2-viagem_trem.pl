@@ -21,6 +21,17 @@ travelFromTo(fortaleza, quixada).
 
 % <FORNEÇA AQUI SUA SOLUÇÃO>
 
+directTrain(fortaleza, horizonte).
+directTrain(horizonte, quixada).  
+directTrain(quixada, banabuiu).  
+directTrain(banabuiu, solonopolis).  
+directTrain(solonopolis, iguatu).  
+directTrain(iguatu, varzea_alegre).  
+directTrain(varzea_alegre, juazeiro).
+
+travelFromTo(C1, C2) :- directTrain(C1, C2).
+travelFromTo(C1, C2) :- directTrain(C1, X), travelFromTo(X, C2).
+
 
 
 /***********************************************************************************************************************
